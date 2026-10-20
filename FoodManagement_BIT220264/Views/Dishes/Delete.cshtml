@@ -1,2 +1,2 @@
-@model Dish_BIT240097
+@model Dish_BIT220264
 <h1>@(Context.Session.GetString("lang")=="vi"?"Xóa món ăn":"Delete dish")</h1><section class="panel"><p> @(Context.Session.GetString("lang")=="vi"?"Bạn có chắc muốn xóa món":"Are you sure you want to delete") <strong>@Model.Name</strong>?</p><form asp-action="Delete" method="post"><input type="hidden" asp-for="Id"/><button class="btn danger" type="submit">@(Context.Session.GetString("lang")=="vi"?"Xóa":"Delete")</button><a class="btn" asp-action="Index">Cancel</a></form></section>

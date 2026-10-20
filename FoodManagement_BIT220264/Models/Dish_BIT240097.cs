@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
-namespace FoodManagement_BIT240097.Models;
-public class Dish_BIT240097
+namespace FoodManagement_BIT220264.Models;
+public class Dish_BIT220264
 {
  public int Id { get; set; }
  [Required(ErrorMessage="NameRequired")][StringLength(120)] public string Name { get; set; } = "";
@@ -9,7 +9,7 @@ public class Dish_BIT240097
  public bool IsAvailable { get; set; } = true;
  [StringLength(1000)] public string? Description { get; set; }
  [Range(1, int.MaxValue, ErrorMessage="CategoryRequired")] public int DishCategoryId { get; set; }
- public DishCategory_BIT240097? Category { get; set; }
- public ICollection<DishImage_BIT240097> Images { get; set; } = new List<DishImage_BIT240097>();
+ public DishCategory_BIT220264? Category { get; set; }
+ public ICollection<DishImage_BIT220264> Images { get; set; } = new List<DishImage_BIT220264>();
  public string TimeClass => PreparationTime <= 15 ? "Quick / Nhanh" : "Regular / Thông thường";
 }

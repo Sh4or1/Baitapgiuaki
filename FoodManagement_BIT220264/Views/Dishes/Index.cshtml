@@ -1,4 +1,4 @@
-@model IEnumerable<Dish_BIT240097>
+@model IEnumerable<Dish_BIT220264>
 @{var vi=ViewBag.IsVi==true;}
 <div class="page-head"><div><p class="eyebrow">@(vi?"QUẢN TRỊ NHÀ HÀNG":"RESTAURANT ADMINISTRATION")</p><h1>@(vi?"Quản lý món ăn":"Dish Management")</h1><p class="muted">@(vi?"Tìm kiếm, lọc và quản lý thực đơn":"Search, filter and manage your menu")</p></div><a class="btn primary" asp-action="Create">＋ @(vi?"Thêm món":"Add dish")</a></div>
 @if(ViewBag.FilterError!=null){<div class="alert">@ViewBag.FilterError</div>}

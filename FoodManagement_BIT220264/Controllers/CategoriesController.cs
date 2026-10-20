@@ -1,11 +1,11 @@
-using FoodManagement_BIT240097.Data; using FoodManagement_BIT240097.Models; using Microsoft.AspNetCore.Mvc; using Microsoft.EntityFrameworkCore;
-namespace FoodManagement_BIT240097.Controllers;
+using FoodManagement_BIT220264.Data; using FoodManagement_BIT220264.Models; using Microsoft.AspNetCore.Mvc; using Microsoft.EntityFrameworkCore;
+namespace FoodManagement_BIT220264.Controllers;
 public class CategoriesController : Controller { private readonly AppDbContext _db; public CategoriesController(AppDbContext db)=>_db=db;
  public async Task<IActionResult> Index()=>View(await _db.DishCategories.Include(x=>x.Dishes).AsNoTracking().OrderBy(x=>x.Name).ToListAsync());
- public IActionResult Create()=>View(new DishCategory_BIT240097());
- [HttpPost,ValidateAntiForgeryToken] public async Task<IActionResult> Create(DishCategory_BIT240097 c){if(await _db.DishCategories.AnyAsync(x=>x.Name==c.Name))ModelState.AddModelError(nameof(c.Name),"Category name already exists.");if(!ModelState.IsValid)return View(c);_db.Add(c);await _db.SaveChangesAsync();return RedirectToAction(nameof(Index));}
+ public IActionResult Create()=>View(new DishCategory_BIT220264());
+ [HttpPost,ValidateAntiForgeryToken] public async Task<IActionResult> Create(DishCategory_BIT220264 c){if(await _db.DishCategories.AnyAsync(x=>x.Name==c.Name))ModelState.AddModelError(nameof(c.Name),"Category name already exists.");if(!ModelState.IsValid)return View(c);_db.Add(c);await _db.SaveChangesAsync();return RedirectToAction(nameof(Index));}
  public async Task<IActionResult> Edit(int? id){if(id==null)return NotFound();var c=await _db.DishCategories.FindAsync(id);return c==null?NotFound():View(c);}
- [HttpPost,ValidateAntiForgeryToken] public async Task<IActionResult> Edit(int id,DishCategory_BIT240097 c){if(id!=c.Id)return BadRequest();if(await _db.DishCategories.AnyAsync(x=>x.Name==c.Name&&x.Id!=id))ModelState.AddModelError(nameof(c.Name),"Category name already exists.");if(!ModelState.IsValid)return View(c);_db.Update(c);await _db.SaveChangesAsync();return RedirectToAction(nameof(Index));}
+ [HttpPost,ValidateAntiForgeryToken] public async Task<IActionResult> Edit(int id,DishCategory_BIT220264 c){if(id!=c.Id)return BadRequest();if(await _db.DishCategories.AnyAsync(x=>x.Name==c.Name&&x.Id!=id))ModelState.AddModelError(nameof(c.Name),"Category name already exists.");if(!ModelState.IsValid)return View(c);_db.Update(c);await _db.SaveChangesAsync();return RedirectToAction(nameof(Index));}
  public async Task<IActionResult> Delete(int? id){if(id==null)return NotFound();var c=await _db.DishCategories.Include(x=>x.Dishes).FirstOrDefaultAsync(x=>x.Id==id);return c==null?NotFound():View(c);}
  [HttpPost,ActionName("Delete"),ValidateAntiForgeryToken] public async Task<IActionResult> DeleteConfirmed(int id){var c=await _db.DishCategories.Include(x=>x.Dishes).FirstOrDefaultAsync(x=>x.Id==id);if(c==null)return NotFound();if(c.Dishes.Any()){TempData["Error"]="Cannot delete a category that is in use.";return RedirectToAction(nameof(Index));}_db.Remove(c);await _db.SaveChangesAsync();return RedirectToAction(nameof(Index));}
 }

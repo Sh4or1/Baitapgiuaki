@@ -1,4 +1,4 @@
-using FoodManagement_BIT240097.Data;
+using FoodManagement_BIT220264.Data;
 using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();

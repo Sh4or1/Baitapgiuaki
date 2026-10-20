@@ -1,3 +1,3 @@
-@model IEnumerable<DishCategory_BIT240097>
+@model IEnumerable<DishCategory_BIT220264>
 @{var vi=Context.Session.GetString("lang")=="vi";}
 <div class="page-head"><div><h1>@(vi?"Loại món ăn":"Dish categories")</h1><p class="muted">@(vi?"Quản lý phân loại thực đơn":"Manage menu categories")</p></div><a class="btn primary" asp-action="Create">＋ @(vi?"Thêm loại":"Add category")</a></div><div class="table-wrap"><table><thead><tr><th>ID</th><th>@(vi?"Tên loại":"Name")</th><th>@(vi?"Mô tả":"Description")</th><th>@(vi?"Số món":"Dishes")</th><th>@(vi?"Thao tác":"Actions")</th></tr></thead><tbody>@foreach(var c in Model){<tr><td>@c.Id</td><td>@c.Name</td><td>@c.Description</td><td>@c.Dishes.Count</td><td class="actions"><a asp-action="Edit" asp-route-id="@c.Id">Edit</a><a asp-action="Delete" asp-route-id="@c.Id">Delete</a></td></tr>}</tbody></table></div>
