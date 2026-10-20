@@ -1,0 +1,2 @@
+@model Dish_BIT240097
+<h1>@(Context.Session.GetString("lang")=="vi"?"Chỉnh sửa món ăn":"Edit dish")</h1><section class="panel"><form asp-action="Edit" asp-route-id="@Model.Id" method="post"><input type="hidden" asp-for="Id"/><partial name="_Form" model="Model"/></form></section>
